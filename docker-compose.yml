@@ -1,0 +1,28 @@
+---
+version: "3.8"
+services:
+  backend:
+    container_name: docusketch
+    depends_on:
+      db:
+        condition: service_healthy
+    build: . 
+    ports:
+      - 5000:5000
+  db:
+    image: mongo:6.0
+    container_name: mymongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mymongo:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh db:27017 --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    restart: always
+
+volumes:
+  mymongo:
