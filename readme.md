@@ -11,7 +11,7 @@ crontab -e
 * * * * * <path-to-memoryMonitoring.sh>
 ```
 __For proper ram percantage evaluation install additional package **"bc"**__
-* sudo <your package manager> bc 
+* sudo < your package manager > bc 
 
 ## Daily Usage
 * docker-compose up
